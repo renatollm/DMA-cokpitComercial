@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" >
+	<SelectDialog
+		title="{i18n>fornecedor_lbl}"
+		class="sapUiPopupWithPadding"
+		items="{/FornecedoresSet}"
+        multiSelect="false"
+		liveChange="onValueHelpFornecedoresSearch"
+		confirm="onValueHelpFornecedoresClose"
+		cancel="onValueHelpFornecedoresCancel">
+		<StandardListItem
+			icon=""
+			iconDensityAware="false"
+			iconInset="false"
+			title="{Lifnr}"
+			description="{Name1}"
+			info="" />
+	</SelectDialog>
+</core:FragmentDefinition>

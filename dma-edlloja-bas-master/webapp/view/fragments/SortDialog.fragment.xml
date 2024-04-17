@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleSortDialogConfirm">
+		<sortItems>
+			<ViewSettingsItem text="Centro" key="Werks" selected="true" />
+			<ViewSettingsItem text="ID" key="Id" />
+			<ViewSettingsItem text="Fornecedor" key="Lifnr" />
+			<ViewSettingsItem text="Pedido" key="Ebeln" />
+			<ViewSettingsItem text="Data" key="Dtpedido" />
+			<ViewSettingsItem text="Tipo" key="Tppedido" />
+			<ViewSettingsItem text="Remessa" key="Dtremessa" />
+			<ViewSettingsItem text="Valor" key="Valor" />
+			<ViewSettingsItem text="Aprovador" key="Aprovador" />
+			<ViewSettingsItem text="Status" key="Status" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

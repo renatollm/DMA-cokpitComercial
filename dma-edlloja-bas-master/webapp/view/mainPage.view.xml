@@ -1,0 +1,150 @@
+<mvc:View
+    controllerName="dma.zedlloja.controller.mainPage"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+    displayBlock="true"
+>
+	<Shell id="shell" >
+		<App id="homeId">
+			<pages>
+				<Page
+                    id="page"
+                    title="{i18n>title}"
+                    titleLevel="H2">
+                    <!-- <customHeader>  -->
+                        <Bar>
+                            <contentLeft>
+                                <Button  
+                                    class="btnHistorico" 
+                                    id="btnHistorico" 
+                                    icon="sap-icon://history" 
+                                    text="  Histórico de Pedidos"
+                                    press="onHistorico"/>
+                            </contentLeft>
+                            <contentRight>
+                                <ComboBox
+                                    id="idComboLojas"
+                                    items="{ path: '/LojasSet', sorter: { path: 'Loja' } }"
+                                    enabled="true"
+									change="onLojaChange">
+                                    <core:Item key="{Loja}" text="{Nome}" />
+                                </ComboBox>
+                            </contentRight>
+                        </Bar>
+                    <!-- </customHeader> -->
+					<content>
+                        <VBox
+                            id="idVbox1">
+
+                            <u:Calendar
+                                id="idCalendar1"
+                                select="handleCalendarSelect"
+                                width="100%" />
+                            <u:CalendarLegend
+                                id="idCalendarLegend1" />
+                            
+                            <Table
+								id="idTableCalendar"
+                                class="sapUiMediumMarginTop"
+                                noDataText="Selecionar uma data"
+								inset="false"
+								items="{
+									path: 'modelSelectedCalendarDate>/'
+								}" 
+								sticky="HeaderToolbar,InfoToolbar,ColumnHeaders">
+                                <headerToolbar>
+                                    <OverflowToolbar>
+                                        <Text
+                                            text="Agendamentos na data"/>
+                                        <ToolbarSpacer />
+                                        <Button
+                                            id="idButtonAddSchedule"
+                                            icon="sap-icon://add"
+                                            tooltip="Adicionar na Data"
+                                            enabled="false"
+                                            visible="true"
+                                            press="onAddSchedule"/>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+								<columns>
+									<Column width="4%">
+										<Text text="" />
+									</Column>
+									<Column width="4%">
+										<Text text="" />
+									</Column>
+									<Column width="100px">
+										<Text text="Atraso"/>
+									</Column> 
+									<Column width="100px">
+										<Text text="Fornecedor" />
+									</Column>
+									<Column width="450px">
+										<Text text="Nome do Fornecedor" />
+									</Column>
+									<!-- <Column>
+										<Text text="Status" />
+									</Column> -->
+									<Column hAlign="Center">
+										<Text text="Qtd.Pedidos" />
+									</Column>
+									<Column hAlign="End">
+										<Text text="Valor/BRL" />
+									</Column>
+									<!--<Column>
+										<Text text="Volume/KG" />
+									</Column> -->
+									<!-- <Column>
+										<Text text="Data de Entrega" />
+									</Column> -->
+									<Column>
+										<Text text="" /> 
+									</Column> 
+								</columns>
+								<items>
+									<ColumnListItem
+										type="Navigation"
+										press="toPedido">
+										<cells>
+                                            <!-- icone Atraso -->
+											<core:Icon src="{modelSelectedCalendarDate>Icone}" 
+                                                       color="{modelSelectedCalendarDate>Cor}" />
+                                            <!-- icone Periodico -->
+											<core:Icon src="{modelSelectedCalendarDate>IconePeriodico}" 
+                                                       color="{modelSelectedCalendarDate>CorPeriodico}" />
+                                            <!-- Dias em Atraso -->
+											<Text text="{modelSelectedCalendarDate>Atraso}" />
+                                            <!-- Fornecedor -->
+											<Text text="{modelSelectedCalendarDate>Fornecedor}" />
+											<!-- Nome do Fornecedor -->
+                                            <Text text="{modelSelectedCalendarDate>NomeFornecedor}" />
+											<!-- Status 
+                                            <Text text="{modelSelectedCalendarDate>Status}" />-->
+											<!-- Pedido -->
+                                            <Text text="{modelSelectedCalendarDate>QtdPedidos}" />
+											<!-- Valor/BRL -->
+											<ObjectNumber number="{path: 'modelSelectedCalendarDate>ValorBRL', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+											<!-- Volume/KG -->
+                                            <!--<Text text="{modelSelectedCalendarDate>VolumeKG}" /> -->
+											<!-- Entrega 
+                                            <Text text="{modelSelectedCalendarDate>Entrega}" /> -->
+                                            <Button 
+                                                icon="sap-icon://delete" 
+                                                visible="true"
+                                                enabled="true" 
+                                                press="onDelete" 
+                                                type="Reject" /> <!--visible="{= ${modelSelectedCalendarDate>Atraso} === '0' }" -->
+										</cells>
+									</ColumnListItem>
+								</items>
+                            </Table>
+                        </VBox>
+                    </content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

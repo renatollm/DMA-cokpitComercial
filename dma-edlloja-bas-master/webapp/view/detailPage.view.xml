@@ -1,0 +1,214 @@
+<mvc:View
+	controllerName="dma.zedlloja.controller.detailPage"
+	xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true">
+    <Page
+        id="idDetailPage"
+        title="Detalhamento"
+        titleLevel="H2"
+        showNavButton="true"
+        navButtonPress="onNavBack" 
+        enableScrolling="true">
+        <headerContent>
+            <Bar>
+                <contentLeft>
+                    <Button
+                        icon="sap-icon://nav-back"
+                        press="onNavBack" />
+                </contentLeft>
+                <contentMiddle>
+                    <Text 
+                        text="Detalhamento" />
+                </contentMiddle>
+                <contentRight>
+                    <Button
+                        icon="sap-icon://lead"
+                        press="onOpenFornecedorInfo" />
+                </contentRight>		
+            </Bar>
+        </headerContent>
+        <content>
+            <ObjectHeader 
+                id="headerDetail"
+                title="{path:'fornecedorInfo>/Lifnr'} - {path: 'fornecedorInfo>/Nome'}"
+                number="{
+                    parts:[{path:'somaItens>/Total'},{path:'R$'}],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {showMeasure: false}
+                }"
+                class="sapUiResponsivePadding--header" >
+                <statuses>
+                    <ObjectStatus
+                        title="{i18n>total_vencido}"
+                        text="{path: 'fornecedorInfo>/Total', formatter: '.formatter.float2digStr'}"
+                        state="{path: 'fornecedorInfo>/Total', formatter: '.formatter.positiveNegative'}" />
+                </statuses>
+                <attributes>
+                    <ObjectAttribute id="headerLoja" text="Loja: {path: 'modelGlobalData>/Werks' }" />
+                </attributes>
+            </ObjectHeader> 
+                <Table
+                    id="idTablePedido"
+                    class="tableTelaPedido"
+                    noDataText="Sem itens para exibir"
+                    items="{path:'/ItensPedidoSet', sorter: {path:'Matnr'}}"
+                    updateFinished="updateFinished"
+                    sticky="HeaderToolbar,ColumnHeaders">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Label text="{i18n>dtremessa}" width="100%" required="true" id="label0">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData maxWidth="130px" shrinkable="true" priority="NeverOverflow"/>
+                                </layoutData>
+                            </Label>
+                            <DatePicker  class="alignLeft" id="idDtRemessa" value="" valueFormat="yyyyMMdd" displayFormat="dd/MM/yyyy" required="true" change="onDtRemessa">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData maxWidth="200px" shrinkable="true" priority="NeverOverflow"/>
+                                </layoutData>
+                            </DatePicker>
+                            <ToolbarSpacer />
+                            <Label text="{i18n>tppedido}" width="100%" required="true" id="label1">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData maxWidth="120px" shrinkable="true" priority="NeverOverflow"/>
+                                </layoutData>
+                            </Label>
+                            <ComboBox class="alignLeft" showSecondaryValues="true" items="{path: '/TipoPedidoSet', sorter: { path: 'Batxt' } }" width="100%" required="true" id="idComboPedido" selectionChange="onTipoPedido">
+                                <items>
+                                    <core:ListItem xmlns:core="sap.ui.core" key="{Bsart}" text="{Batxt}" additionalText="{Bsart}"
+                                        id="cbTipoPedido"/>
+                                </items>
+                                <layoutData>
+                                    <OverflowToolbarLayoutData maxWidth="200px" shrinkable="true" priority="NeverOverflow"/>
+                                </layoutData>
+                            </ComboBox>
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="5.7em" hAlign="Center">
+                            <Text text="Material" />
+                        </Column>
+                        <Column width="auto" hAlign="Begin">
+                            <Text text="Descrição" />
+                        </Column>
+                        <Column width="5.5em" hAlign="End">
+                            <Text text="Preço" />
+                        </Column>
+                        <Column id="inputSobsl" width="5.5em" hAlign="End" visible="false">
+                            <Text text="Fonte" />
+                        </Column>
+                        <Column id="inputEditavel" width="5.5em" hAlign="End" visible="false">
+                            <Text text="Editavel" />
+                        </Column>
+                        <Column id="inputMaximo" width="5.5em" hAlign="End" visible="false">
+                            <Text text="Maximo" />
+                        </Column>
+                        <Column width="5em" hAlign="End">
+                            <Text text="Mín" />
+                        </Column>
+                        <Column width="5em" hAlign="End">
+                            <Text text="Máx" />
+                        </Column>
+                        <Column width="3em" hAlign="End">
+                            <Text text=" " />
+                        </Column>                        
+                        <Column width="5em" hAlign="End">
+                            <Text text="Vd M0" />
+                        </Column>
+                        <Column width="5em" hAlign="End">
+                            <Text text="Vd M1" />
+                        </Column>
+                        <Column width="5.5em" hAlign="End">
+                            <Text text="PedPend" />
+                        </Column>
+                        <Column width="5em" hAlign="End">
+                            <Text text="Estoque" />
+                        </Column>
+                        <Column width="5em" hAlign="End">
+                            <Text text="DDE" />
+                        </Column>
+                        <Column id="inputSugestao" width="5.5em" hAlign="End">
+                            <Text text="Sugestão" />
+                        </Column>
+                        <Column id="inputRequisicao" width="6.5em" >
+                            <Text text="Requisição" />
+                        </Column>
+                        <Column width="4em" hAlign="Center">
+                            <Text text="Oferta" />
+                        </Column>
+                        <Column width="3.5em" hAlign="Center">
+                            <Text text="Un" />
+                        </Column>
+                        <Column width="3.5em" hAlign="Center">
+                            <Text text="Emb" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <!-- Material -->
+                                <Text text="{parts: ['Matnr'],formatter: '.formatter.leadingZeroOutput'}" />
+                                <!-- Descrição -->
+                                <Text text="{Maktx}" />
+                                <!-- Preço -->
+                                <ObjectNumber number="{path: 'Prcompra', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+                                <!-- Sobsl -->
+                                <ObjectNumber number="{path: 'Sobsl', formatter: '.formatter.fullNumberStr'}" emphasized="false" visible="false"/>
+                                <!-- Editavel -->
+                                <ObjectNumber number="{path: 'Editavel'}" emphasized="false" visible="false"/>
+                                <!-- Maximo -->
+                                <ObjectNumber number="{path: 'Maximo'}" emphasized="false" visible="false"/>
+                                <!-- Mínimo -->
+                                <ObjectNumber number="{path: 'Estmin', formatter: '.formatter.toInteger'}" emphasized="false"/>
+                                <!-- Máximo -->
+                                <ObjectNumber number="{path: 'Estmax', formatter: '.formatter.toInteger'}" emphasized="false"/>
+                                <!--Faceamento-->
+                                <Button icon="sap-icon://Fiori6/F0866" press="onPressFaceamento" tooltip='Faceamento'/>
+                                <!-- Qtd Venda M0 -->
+                                <ObjectNumber number="{path: 'Qtdvdmm', formatter: '.formatter.toInteger'}" emphasized="false"/>
+                                <!-- Qtd Venda M1 -->
+                                <ObjectNumber number="{path: 'Qtdvdm1', formatter: '.formatter.toInteger'}" emphasized="false"/>
+                                <!-- Ped.Pendente -->
+                                <ObjectNumber number="{path: 'Ppend', formatter: '.formatter.toInteger'}" emphasized="false"/>
+                                <!-- Estoque -->
+                                <ObjectNumber number="{path: 'EstLoja', formatter: '.formatter.toInteger'}" emphasized="false"/>
+                                <!-- DDE -->
+                                <ObjectNumber number="{path: 'Dde', formatter: '.formatter.toInteger'}" emphasized="false"/>
+                                <!-- Sugestão -->
+                                <ObjectNumber number="{path: 'Sugestao', formatter: '.formatter.toIntReqSugStr'}" emphasized="false"/>
+                                <!-- Requisicao -->
+                                <Input 
+                                    id="inputSugestao2"
+                                    class="inputCompras" 
+                                    width="4em" 
+                                    value="{path: 'Requisicao', formatter: '.formatter.zeroEmpty' }"
+                                    fieldWidth="100%" 
+                                    type="Text"
+                                    startSuggestion="0" 
+                                    liveChange="_onLiveChangeInput"
+                                    change="_onChangeInput" 
+                                    showTableSuggestionValueHelp="false"
+                                    valueLiveUpdate="true"/>
+                                    <!-- liveChange="_onLiveChangeInput" -->
+                                    <!-- change="_onChangeInput"  -->
+                                <!-- Un/Qtde -->
+                                <ObjectStatus icon="sap-icon://lead"
+                                      visible="{= ${Promocao} === 'X' }"/>
+                                <Text text="{Un}" />
+                                <Text text="{Qtd}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button id="resetValores" type="Reject" text="Reinicializar valores" press="onResetValores"/>
+                <Button id="gravaPedido" type="Emphasized" text="Gravar pedido" press="onGravaPedido" enabled="false"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

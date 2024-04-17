@@ -1,0 +1,174 @@
+{
+        "name": "zedlloja",
+    "_version": "1.32.0",
+      "sap.app": {
+          "id": "dma.zedlloja",
+          "type": "application",
+          "i18n": "i18n/i18n.properties",
+          "title": "{{appTitle}}",
+          "description": "{{appDescription}}",
+          "applicationVersion": {
+              "version": "1.0.0"
+          },
+          "sourceTemplate": {
+              "id": "servicecatalog.connectivityComponentForManifest",
+              "version": "0.0.0"
+          },
+          "dataSources": {
+              "ZCOCKPIT_EDLLOJA_SRV": {
+                  "uri": "/sap/opu/odata/sap/ZCOCKPIT_EDLLOJA_SRV/",
+                  "type": "OData",
+                  "settings": {
+                      "localUri": "localService/metadata.xml"
+                  }
+              }
+          }
+      },
+      "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://detail-view",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": false,
+            "phone": false
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_bluecrystal"
+        ]
+    },
+      "sap.ui5": {
+        "rootView": {
+            "viewName": "dma.zedlloja.view.mainPage",
+            "type": "XML"
+        },
+        "dependencies": {
+            "minUI5Version": "1.38.40",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "dma.zedlloja.i18n.i18n"
+                }
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "defaultUpdateMethod": "PUT"
+                },
+                "dataSource": "ZCOCKPIT_EDLLOJA_SRV",
+                "preload": true
+            },
+            "modelCalendarDate": {
+                "dataSource": "ZCOCKPIT_EDLLOJA_SRV",
+                "preload": true
+            },
+            "modelSelectedCalendarDate": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "preload": false
+            },
+            "modelConfigData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "preload": false
+            },
+            "modelGlobalData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "preload": false
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "dma.zedlloja.view",
+                "controlAggregation": "pages",
+                "controlId": "homeId",
+                "clearControlAggregation": false,
+                "transition": "slide"
+            },
+            "routes": [
+                {
+                    "name": "mainPage",
+                    "pattern": "",
+                    "target": "mainPage"
+                },
+                {
+                    "name": "detailPage",
+                    "pattern": "Detail/{Lifnr}/{Werks}",
+                    "target": "detailPage"
+                },
+                {
+                    "name": "histCabec",
+                    "pattern": "histCabec/{Werks}",
+                    "target": "histCabec"
+                },
+                {
+                    "name": "histDetail",
+                    "pattern": "histDetail/{Id}",
+                    "target": "histDetail"
+                }
+            ],
+            "targets": {
+                "mainPage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewName": "mainPage"
+                },
+                "detailPage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewName": "detailPage"
+                }, 
+                "histCabec": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewName": "histCabec"
+                },
+                "histDetail": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewName": "histDetail"
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zedlloja/webapp",
+        "_version": "1.1.0"
+    }
+}

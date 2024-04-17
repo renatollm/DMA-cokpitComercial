@@ -1,0 +1,35 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" >
+	<Dialog
+		id="idFragmentAddSchedule"
+		title="Escolha">
+		<VBox class="sapUiSmallMargin">
+            <Title text="{i18n>dtremessa}" />
+            <DatePicker  class="alignLeft" id="idDtRemessa" value="" valueFormat="yyyyMMdd" displayFormat="dd/MM/yyyy" required="true" change="onDtRemessa"/>
+
+            <Title text="{i18n>tppedido}" />
+            <ComboBox class="alignLeft" showSecondaryValues="true" items="{path: '/TipoPedidoSet', sorter: { path: 'Batxt' } }" width="100%" required="true" id="idComboPedido" selectionChange="onTipoPedido">
+                <items>
+                    <core:ListItem xmlns:core="sap.ui.core" key="{Bsart}" text="{Batxt}" additionalText="{Bsart}"
+                        id="cbTipoPedido"/>
+                </items>
+            </ComboBox>
+		</VBox>
+		<HBox
+			alignItems="Center"
+			justifyContent="End">
+			<Button
+				text="Pedido"
+				type="Emphasized"
+				press="onFragmentPedido"
+				class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
+			<Button
+				text="Cancelar"
+				press="onFragmentCancel"
+				class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

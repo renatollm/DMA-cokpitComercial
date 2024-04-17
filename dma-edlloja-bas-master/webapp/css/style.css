@@ -1,0 +1,73 @@
+/* Enter your custom styles here */
+.alignLeft {
+  text-align: left !important;    
+}
+.inputCompras {
+    text-align: right;
+    height: 2em;
+    padding: 0px;    
+}
+.tableTelaPedido tr:nth-child(even) {
+    background: #acbcde30;
+}
+
+.tableTelaPedido th {
+    background: #acbcde;
+}
+
+.tableTelaPedido .sapMListTblHeaderCell {
+    padding: 0rem !important;
+}
+
+.tableTelaPedido .sapMListTblCell {
+    padding-bottom: 0.2rem !important;
+    padding-top: 0.2rem !important;
+}
+
+.tableTelaPedido .sapMInputBaseInner{
+    text-align: right;
+    height: 1.7rem !important;
+}
+
+.selectedMaterial{
+	box-shadow: 0 0 12px black;
+	background-color: azure !important;
+},
+.btnHistorico .sapMBtnInner {
+    height: 4rem; /* Increase it to 6rem */
+}
+.btnHistorico .sapMBtnText>.sapMBtnIcon {
+   display: inline;
+   line-height: 1.5rem; /* Add this line when you are using height as 6rem */
+}
+.btnHistorico .sapMBtnInner.sapMBtnText {
+    padding-left: 0.75rem;
+}    
+.btnHistorico .sapMBtnIcon { 
+   font-size: 1.4rem;   /* Icon size */
+}
+.btnHistorico .sapMBtnContent {
+    line-height: normal;
+    line-height normal;
+    font-size 1.0rem;
+    padding: 0.1rem 0 0 0.7rem
+},
+.btnAgendFornec .sapMBtnInner {
+    height: 4rem; /* Increase it to 6rem */
+}
+.btnAgendFornec .sapMBtnText>.sapMBtnIcon {
+   display: inline;
+   line-height: 1.5rem; /* Add this line when you are using height as 6rem */
+}
+.btnAgendFornec .sapMBtnInner.sapMBtnText {
+    padding-left: 0.75rem;
+}    
+.btnAgendFornec .sapMBtnIcon { 
+   font-size: 1.4rem;   /* Icon size */
+}
+.btnAgendFornec .sapMBtnContent {
+    line-height: normal;
+    line-height normal;
+    font-size 1.0rem;
+    padding: 0.1rem 0 0 0.7rem
+}

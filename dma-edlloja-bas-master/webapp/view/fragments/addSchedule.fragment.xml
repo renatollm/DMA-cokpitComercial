@@ -1,0 +1,134 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" >
+	<Dialog
+		id="idFragmentAddSchedule"
+		title="Criar agendamento">
+
+		<VBox class="sapUiSmallMargin">
+					<Title text="Data" />
+<!--
+                    <Text
+                        id="idFragmentTextScheduleDate"
+                        text="{modelGlobalData>/DataSelecionadaBr}" 
+                        value="{modelGlobalData>/DataInicio}"/>
+-->
+					<DatePicker
+                        id="startDateAgendam"
+                        value="{path: 'modelGlobalData>/DataInicio', type:'sap.ui.model.type.Date' }"
+                        displayFormat="dd/MM/yyyy"
+                        valueFormat="yyyy-MM-dd"
+                        enabled="false"
+                        change="onChangeDataInicio" />
+
+					<Title text="Fornecedor" />
+					<Input
+                        id="idFragmentInputSupplier"
+                        value=""
+                        enabled="true"
+                        showValueHelp="true"
+                        valueHelpRequest="onValueHelpFornecedoresOpen"
+                        valueHelpOnly="false"
+                        type="Number" />
+<!--
+					<Text
+                        id="idFragmentTextSupplierName"
+                        text="{modelSmartTableSelection>/SupplierName}" />
+-->
+                    <CheckBox id="ckbRepetir" 
+                              text="Repetir" 
+                              selected="{modelGlobalData>/Repetir}" 
+                              select="onCkbRepetir"
+                              visible="true"/>
+					<Title text="Repetir até" visible="{modelGlobalData>/Repetir}" />
+					<DatePicker
+                        id="endDateAgendam"
+                        value="{path: 'modelGlobalData>/DataFim', type:'sap.ui.model.type.Date' }"
+                        displayFormat="dd/MM/yyyy"
+                        valueFormat="yyyy-MM-dd"
+                        enabled="true" 
+                        visible="{modelGlobalData>/Repetir}" 
+                        change="onChangeDataFim"/>
+                    <VBox visible="{modelGlobalData>/Repetir}">
+                        <Title text="Intervalo" />
+                        <RadioButtonGroup columns="3" class="sapUiMediumMarginBottom">
+                            <buttons>
+                                <RadioButton id="rbPeriod1" text="Semanal"/>
+                                <RadioButton id="rbPeriod2" text="Quinzenal"/>
+                                <RadioButton id="rbPeriod3" text="Mensal"/>
+                            </buttons>
+                        </RadioButtonGroup>
+    <!--
+                        <ComboBox
+                            id="idFragmentComboBoxInterval"
+                            items="{
+                                path: 'modelConfigData>/dateInterval'
+                            }"
+                            selectedKey="0" >
+                            <core:Item
+                                key="{modelConfigData>key}"
+                                text="{modelConfigData>text}" />
+                        </ComboBox>
+    -->
+                        <Title text="Dia da Semana" />
+                        <HBox
+                            alignItems="Center"
+                            justifyContent="Start"
+                            visible="{modelGlobalData>/Repetir}">
+                            <RadioButtonGroup columns="7" class="sapUiMediumMarginBottom">
+                                <buttons>
+                                    <RadioButton id="rbDay2" text="Segunda"/>
+                                    <RadioButton id="rbDay3" text="Terça"/>
+                                    <RadioButton id="rbDay4" text="Quarta"/>
+                                    <RadioButton id="rbDay5" text="Quinta"/>
+                                    <RadioButton id="rbDay6" text="Sexta"/>
+                                    <RadioButton id="rbDay7" text="Sábado"/>
+                                    <RadioButton id="rbDay1" text="Domingo"/>
+                                </buttons>
+                            </RadioButtonGroup>
+                        </HBox>
+                        <Title text="Horário" />
+                        <HBox
+                            alignItems="Center"
+                            justifyContent="Start"
+                            visible="{modelGlobalData>/Repetir}">
+                            <RadioButtonGroup columns="3" class="sapUiMediumMarginBottom">
+                                <buttons>
+                                    <RadioButton id="rbTime1" text="Manhã"/>
+                                    <RadioButton id="rbTime2" text="Tarde"/>
+                                    <RadioButton id="rbTime3" text="Noite"/>
+                                    <RadioButton id="rbTime4" text="Outro"/>
+                                </buttons>
+                            </RadioButtonGroup>
+                            <TimePicker
+                                id="TP1"
+                                value="16:15"
+                                valueFormat="HH:mm"
+                                displayFormat="HH:mm"
+                                placeholder="Escolha o Horário"/>
+                        </HBox>
+                    </VBox>
+
+<!--
+				</f:content>
+			</f:SimpleForm>
+-->
+		</VBox>
+
+		<HBox
+			alignItems="Center"
+			justifyContent="End">
+			<Button
+				text="Gravar"
+				type="Emphasized"
+				press="onFragmentSaveAddSchedule"
+				class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
+			<Button
+				text="Cancelar"
+				press="onFragmentCancelAddSchedule"
+				class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

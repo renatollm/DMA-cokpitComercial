@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Pedido"
+		class="sapUiPopupWithPadding"
+		items="{/PedidoHistoricoSet}"
+		liveChange="_handleF4pedidoSearch"
+		confirm="_handleF4pedidoClose"
+		cancel="_handleF4pedidoClose">
+		<StandardListItem
+			icon=""
+			title="{Ebeln}"
+			description="{Mcod1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

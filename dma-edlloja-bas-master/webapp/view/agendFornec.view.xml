@@ -1,0 +1,129 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:semantic="sap.m.semantic" xmlns:table="sap.ui.table"
+	xmlns:sap.ui.core="sap.ui.core" xmlns="sap.m" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="dma.zedlloja.controller.agendFornec"
+	height="100%">
+	<Page title="Agendamentos" id="__page3" showSubHeader="false" showNavButton="true" navButtonPress="onNavBack">
+		<content>
+			<FlexBox width="100%" class="columns" fitContainer="true" direction="Column" alignContent="Start">
+				<items>
+					<Panel id="__panel5" headerText="Filtros" expand="onExpand">
+						<content>
+							<FlexBox width="100%" id="__box5" fitContainer="true" alignContent="SpaceBetween">
+								<items>
+									<FlexBox width="100%" class="flexBoxConfig" justifyContent="SpaceBetween" fitContainer="true" direction="Column">
+										<items>
+											<Label text="Fornecedor" required="false" width="100%"/>
+											<Input width="100%" id="fornecedorInput" type="Text" placeholder="Escolha o Fornecedor ..." showSuggestion="true" showValueHelp="true"
+												valueHelpRequest="onF4Fornecedor" valueHelpOnly="true" fieldWidth="130px" maxLength="50"/>
+										</items>
+									</FlexBox> 
+                                    <FlexBox width="100%" class="flexBoxConfig" justifyContent="SpaceBetween" fitContainer="true" direction="Column"/>
+									<FlexBox width="100%" class="flexBoxConfig" direction="Column">
+										<items>
+											<Label text="Data do Pedido" width="100%" required="true" id="label0"/>
+											<DateRangeSelection id="drPedido" delimiter="-" displayFormat="dd/MM/yyyy" change="onChangeDatas"/>
+										</items>
+									</FlexBox>
+                                    <FlexBox width="100%" class="flexBoxConfig" justifyContent="SpaceBetween" fitContainer="true" direction="Column"/>
+									<FlexBox width="100%" class="flexBoxConfig" direction="Column">
+										<items>
+											<Label text="Data da Remessa" width="100%" required="false" id="label0_copy"/>
+											<DateRangeSelection id="drRemessa" delimiter="-" displayFormat="dd/MM/yyy" change="onChangeDatas"/>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+						</content>
+						<headerToolbar>
+							<Toolbar width="100%" id="toolbar1">
+								<content>
+									<Title text="Filtros" width="100%"/>
+									<ToolbarSpacer id="spacer0"/>
+									<Button id="btnClear" icon="sap-icon://delete" press="onBtnClear"/>
+								</content>
+							</Toolbar>
+						</headerToolbar>
+					</Panel>
+					<FlexBox width="100%" id="__box0" fitContainer="true" height="100%">
+						<items>
+                            <ScrollContainer  width="100%" horizontal="false" vertical="true" focusable="true">
+                                <Table 
+                                    noDataText="Nenhum pedido encontrado" 
+                                    id="tableHistPedido" 
+                                    items="{path:'/HistoricoCabecSet'}" 
+                                    class="tableTelaPedido" 
+                                    mode="None"
+                                    selectionChange="onSelectionChange">
+                                    <columns>
+                                        <Column width="5em" hAlign="Center">
+                                            <Text text="ID" />
+                                        </Column>
+                                        <Column width="20em" hAlign="Begin">
+                                            <Text text="Fornecedor" />
+                                        </Column>
+                                        <Column width="5em" hAlign="Center">
+                                            <Text text="Pedido" />
+                                        </Column>
+                                        <Column width="4em" hAlign="Center">
+                                            <Text text="Data Remessa" />
+                                        </Column>
+                                        <Column width="3em" hAlign="Center">
+                                            <Text text="Tipo Pedido" />
+                                        </Column>
+                                        <Column width="5em" hAlign="Right">
+                                            <Text text="Valor Total" />
+                                        </Column>
+                                        <Column width="6em" hAlign="Center">
+                                            <Text text="Aprovador" />
+                                        </Column>
+                                        <Column width="6em" hAlign="Begin">
+                                            <Text text="Status" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem
+                                            vAlign="Middle"
+                                            type="Navigation"
+                                            press="onNavigation" >
+                                            <cells>
+                                                <!-- ID -->
+                                                <Text text="{Id}" />
+                                                <!-- Forn - Nome -->
+                                                <Text text="{Lifnr} - {Mcod1}" />
+                                                <!-- Pedido -->
+                                                <Text text="{Pedido}" />
+                                                <!-- Dt Remessa -->
+                                                <Text text="{path:'Dtremessa', formatter: '.formatter.dateFormat'}" wrapping="false" />
+                                                <!-- Tp Pedido -->
+                                                <Text text="{Tppedido}" />
+                                                <!-- Valor -->
+                                                <ObjectNumber number="{path: 'Valor', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+                                                <!-- Aprovador -->
+                                                <Text text="{Aprovador}" />
+                                                <!-- Status -->
+                                                <ObjectStatus
+                                                    text="{ path: 'Status', formatter: '.formatter.textFormat' }"
+                                                    state="{ path: 'Status', formatter: '.formatter.statusFormat' }" 
+                                                    icon="{ path: 'Status', formatter: '.formatter.iconFormat' }" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </ScrollContainer>
+						</items>
+					</FlexBox>
+				</items>
+			</FlexBox>
+		</content>
+		<headerContent>
+			<Button width="4em" id="btnConfig" press="onConfig" icon="sap-icon://action-settings" visible="false"/>
+		</headerContent>
+		<footer>
+			<Bar id="bar0">
+				<contentRight>
+					<Button xmlns="sap.m" icon="sap-icon://print" id="botaoImprimir" press="toPrint" visible="false" enabled="false"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

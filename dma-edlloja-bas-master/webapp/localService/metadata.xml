@@ -1,0 +1,313 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+<edmx:DataServices m:DataServiceVersion="2.0">
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZCOCKPIT_EDLLOJA_SRV_01" xml:lang="pt" sap:schema-version="1">
+<EntityType Name="Subscription" sap:semantics="subscriptions" sap:content-version="1">
+<Key>
+<PropertyRef Name="ID"/>
+</Key>
+<Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="Ab.-ID" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+<Property Name="user" Type="Edm.String" MaxLength="12" m:FC_TargetPath="SyndicationAuthorName" m:FC_KeepInContent="false" sap:label="Nome do usuário" sap:creatable="false" sap:filterable="false"/>
+<Property Name="updated" Type="Edm.DateTime" Precision="0" m:FC_TargetPath="SyndicationUpdated" m:FC_KeepInContent="false" sap:label="Registro hora" sap:creatable="false" sap:filterable="false"/>
+<Property Name="title" Type="Edm.String" MaxLength="255" m:FC_TargetPath="SyndicationTitle" m:FC_KeepInContent="false" sap:label="Titel" sap:filterable="false"/>
+<Property Name="deliveryAddress" Type="Edm.String" sap:label="Lieferadresse" sap:filterable="false"/>
+<Property Name="persistNotifications" Type="Edm.Boolean" sap:label="Benachr. persist." sap:filterable="false"/>
+<Property Name="collection" Type="Edm.String" MaxLength="40" sap:label="Sammlung" sap:filterable="false"/>
+<Property Name="filter" Type="Edm.String" sap:label="Filter" sap:filterable="false"/>
+<Property Name="select" Type="Edm.String" MaxLength="255" sap:label="Markieren" sap:filterable="false"/>
+<Property Name="changeType" Type="Edm.String" MaxLength="30" sap:label="Änderungsart"/>
+</EntityType>
+<EntityType Name="Notification" sap:semantics="notifications" sap:content-version="1">
+<Key>
+<PropertyRef Name="ID"/>
+</Key>
+<Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="Benachr-ID"/>
+<Property Name="collection" Type="Edm.String" MaxLength="40" sap:label="Sammlung"/>
+<Property Name="title" Type="Edm.String" m:FC_TargetPath="SyndicationTitle" m:FC_KeepInContent="false" sap:label="Benachr.text"/>
+<Property Name="updated" Type="Edm.DateTime" Precision="0" m:FC_TargetPath="SyndicationUpdated" m:FC_KeepInContent="false" sap:label="Registro hora"/>
+<Property Name="changeType" Type="Edm.String" MaxLength="30" sap:label="Änderungsart"/>
+<Property Name="entriesOfInterest" Type="Edm.Int32" sap:label="Anzahl Einträge"/>
+<Property Name="recipient" Type="Edm.String" MaxLength="112" sap:label="Empfänger" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="Lojas" sap:content-version="1">
+<Key>
+<PropertyRef Name="Loja"/>
+</Key>
+<Property Name="Loja" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Valor" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Usuario" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Usuário" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Nome" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="NOME" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="AgendaDia" sap:content-version="1">
+<Key>
+<PropertyRef Name="Werks"/>
+<PropertyRef Name="Data"/>
+<PropertyRef Name="Lifnr"/>
+</Key>
+<Property Name="Compareceu" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Compareceu" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Periodico" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Periódico" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Qtdpedido" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="QTDPEDIDO" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Cor" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="COR" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Volumekg" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="VOLUMEKG" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Atraso" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="ATRASO" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Data" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Data Agendamento" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Icone" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="ICONE" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Nomefornecedor" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Nome" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Status" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="STATUS" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Itens" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="ITENS" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Valorbrl" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="VALORBRL" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Entrega" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="ENTREGA" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="Titulos" sap:content-version="1">
+<Key>
+<PropertyRef Name="Lifnr"/>
+</Key>
+<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Nome" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Nome" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Nfdev" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="NF Devolução" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Verbas" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Verbas" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Descarga" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Descarga" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Total" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Total Vencidos" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="SomaItens" sap:content-version="1">
+<Key>
+<PropertyRef Name="Werks"/>
+<PropertyRef Name="Lifnr"/>
+</Key>
+<Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Loja" sap:creatable="false"/>
+<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false"/>
+<Property Name="Total" Type="Edm.Decimal" Precision="13" Scale="2" sap:unicode="false" sap:label="Total" sap:creatable="false"/>
+</EntityType>
+<EntityType Name="TipoPedido" sap:content-version="1">
+<Key>
+<PropertyRef Name="Bsart"/>
+</Key>
+<Property Name="Bsart" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tipo documento" sap:creatable="false"/>
+<Property Name="Batxt" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:label="Denominação" sap:creatable="false"/>
+</EntityType>
+<EntityType Name="GravaPedido" sap:content-version="1">
+<Key>
+<PropertyRef Name="Lifnr"/>
+<PropertyRef Name="Werks"/>
+<PropertyRef Name="TpPedido"/>
+<PropertyRef Name="DtRemessa"/>
+</Key>
+<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Loja" sap:creatable="false" sap:updatable="false"/>
+<Property Name="TpPedido" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tipo Pedido" sap:creatable="false" sap:updatable="false"/>
+<Property Name="DtRemessa" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Data Remessa" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Nroseq" Type="Edm.Decimal" Precision="11" Scale="0" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Mensagem" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="FornecHistorico" sap:content-version="1">
+<Key>
+<PropertyRef Name="Lifnr"/>
+</Key>
+<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false"/>
+<Property Name="Mcod1" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Nome" sap:creatable="false"/>
+</EntityType>
+<EntityType Name="HistoricoCabec" sap:content-version="1">
+<Key>
+<PropertyRef Name="Id"/>
+</Key>
+<Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Núm. Sequencial" sap:creatable="false"/>
+<Property Name="Werks" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Werks" sap:creatable="false"/>
+<Property Name="Lifnr" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false"/>
+<Property Name="Mcod1" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Nome" sap:creatable="false"/>
+<Property Name="Ebeln" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Ebeln" sap:creatable="false"/>
+<Property Name="Dtremessa" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Data de remessa" sap:creatable="false"/>
+<Property Name="Dtpedido" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Data dp Pedido" sap:creatable="false"/>
+<Property Name="Tppedido" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Tipo documento" sap:creatable="false"/>
+<Property Name="Valor" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Valor total de venda" sap:creatable="false"/>
+<Property Name="Aprovador" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Nome do usuário" sap:creatable="false"/>
+<Property Name="Status" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false"/>
+<NavigationProperty Name="toDetail" Relationship="ZCOCKPIT_EDLLOJA_SRV_01.HistCabecDetail" FromRole="FromRole_HistCabecDetail" ToRole="ToRole_HistCabecDetail"/>
+<NavigationProperty Name="toInfo" Relationship="ZCOCKPIT_EDLLOJA_SRV_01.HistCabecInfo" FromRole="FromRole_HistCabecInfo" ToRole="ToRole_HistCabecInfo"/>
+</EntityType>
+<EntityType Name="CargaPedido" sap:content-version="1">
+<Key>
+<PropertyRef Name="Werks"/>
+<PropertyRef Name="Lifnr"/>
+</Key>
+<Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Mensagem" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="AgendFornec" sap:content-version="1">
+<Key>
+<PropertyRef Name="Werks"/>
+<PropertyRef Name="Lifnr"/>
+<PropertyRef Name="Zdata"/>
+</Key>
+<Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Zdata" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Data Agendamento" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Nomefornecedor" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Nome Fornecedor" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Periodico" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Periódico" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="HistoricoDetail" sap:content-version="1">
+<Key>
+<PropertyRef Name="Id"/>
+<PropertyRef Name="Matnr"/>
+</Key>
+<Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Núm. Sequencial" sap:creatable="false"/>
+<Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false"/>
+<Property Name="Maktx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Denominação" sap:creatable="false"/>
+<Property Name="Prultcp" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Pr. Ultima Compra" sap:creatable="false"/>
+<Property Name="Prcompra" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Pr. Compra" sap:creatable="false"/>
+<Property Name="Un" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Embalagem CMP" sap:creatable="false"/>
+<Property Name="Umrez" Type="Edm.Decimal" Precision="11" Scale="0" sap:unicode="false" sap:label="Umrez" sap:creatable="false"/>
+<Property Name="Sugestao" Type="Edm.Decimal" Precision="11" Scale="0" sap:unicode="false" sap:label="Sugestão" sap:creatable="false"/>
+<Property Name="Requisicao" Type="Edm.Decimal" Precision="11" Scale="0" sap:unicode="false" sap:label="Requisição" sap:creatable="false"/>
+<Property Name="Aprovado" Type="Edm.Decimal" Precision="11" Scale="0" sap:unicode="false" sap:label="Aprovado" sap:creatable="false"/>
+<Property Name="ValorItem" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Valor Item" sap:creatable="false"/>
+<Property Name="Status" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false"/>
+</EntityType>
+<EntityType Name="HistDetailInfo" sap:content-version="1">
+<Key>
+<PropertyRef Name="Id"/>
+</Key>
+<Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Núm. Sequencial" sap:creatable="false"/>
+<Property Name="Lifnr" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false"/>
+<Property Name="Mcod1" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Nome" sap:creatable="false"/>
+<Property Name="Pedido" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Doc.compras" sap:creatable="false"/>
+<Property Name="Dtremessa" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Data de remessa" sap:creatable="false"/>
+<Property Name="Valor" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Valor total de venda" sap:creatable="false"/>
+</EntityType>
+<EntityType Name="PrnPedido" m:HasStream="true" sap:content-version="1">
+<Key>
+<PropertyRef Name="Ebeln"/>
+</Key>
+<Property Name="Ebeln" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
+<Property Name="MimeType" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
+<Property Name="MediaSource" Type="Edm.Binary" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Url" Type="Edm.String" sap:unicode="false" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="PedidoHistorico" sap:content-version="1">
+<Key>
+<PropertyRef Name="Ebeln"/>
+</Key>
+<Property Name="Ebeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Ebeln" sap:creatable="false"/>
+<Property Name="Mcod1" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Mcod1" sap:creatable="false"/>
+</EntityType>
+<EntityType Name="Fornecedores" sap:content-version="1">
+<Key>
+<PropertyRef Name="Lifnr"/>
+</Key>
+<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Name1" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Nome" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Werks" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="ItensPedido" sap:content-version="1">
+<Key>
+<PropertyRef Name="Werks"/>
+<PropertyRef Name="Lifnr"/>
+<PropertyRef Name="Matnr"/>
+</Key>
+<Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Loja" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Maktx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Denominação" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Sobsl" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Tip.suprim.esp." sap:creatable="false" sap:updatable="false"/>
+<Property Name="Prultcp" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Pr. Ultima Compra" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Prcompra" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Pr. Compra" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Mrg" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Margem Liquida" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Un" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Embalagem CMP" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Qtd" Type="Edm.Decimal" Precision="5" Scale="0" sap:unicode="false" sap:label="Contador" sap:creatable="false" sap:updatable="false"/>
+<Property Name="EstLoja" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Estoque Loja" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Dde" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Dias de Estoque" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Ppend" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Qt.Pedidos Pend." sap:creatable="false" sap:updatable="false"/>
+<Property Name="Vlrvdmm" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Valor total de venda" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Vlrvdm1" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Valor total de venda" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Qtdvdmm" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Qt.Tot.Vd. M1" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Qtdvdm1" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:label="Qt.Tot.Vd. M1" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Sugestao" Type="Edm.Decimal" Precision="11" Scale="0" sap:unicode="false" sap:label="Sugestão de Compra" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Requisicao" Type="Edm.Decimal" Precision="11" Scale="0" sap:unicode="false" sap:label="Sugestão de Compra" sap:creatable="false"/>
+</EntityType>
+<EntityType Name="UsuarioLoja" sap:content-version="1">
+<Key>
+<PropertyRef Name="Usuario"/>
+</Key>
+<Property Name="Nome" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="Nome" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Usuario" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Usuário" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Loja" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Valor" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="Calendario" sap:content-version="1">
+<Key>
+<PropertyRef Name="Werks"/>
+<PropertyRef Name="Data"/>
+<PropertyRef Name="Lifnr"/>
+<PropertyRef Name="Repetir"/>
+</Key>
+<Property Name="FirstDay" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Data Agendamento" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Werks" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Data" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Data Agendamento" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Lifnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Lifnr" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Repetir" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Repetir" sap:creatable="false" sap:updatable="false"/>
+<Property Name="DataFim" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="DataFim" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Intervalo" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Intervalo" sap:creatable="false" sap:updatable="false"/>
+<Property Name="DiaSemana" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="DiaSemana" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Horario" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Horario" sap:creatable="false" sap:updatable="false"/>
+<Property Name="HorarioHora" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="HorarioHora" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Busca" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Busca" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="Periodicidade" sap:content-version="1">
+<Key>
+<PropertyRef Name="Fornecedor"/>
+<PropertyRef Name="Loja"/>
+</Key>
+<Property Name="Fornecedor" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fornecedor" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Loja" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<Association Name="HistCabecInfo" sap:content-version="1">
+<End Type="ZCOCKPIT_EDLLOJA_SRV_01.HistoricoCabec" Multiplicity="1" Role="FromRole_HistCabecInfo"/>
+<End Type="ZCOCKPIT_EDLLOJA_SRV_01.HistDetailInfo" Multiplicity="1" Role="ToRole_HistCabecInfo"/>
+</Association>
+<Association Name="HistCabecDetail" sap:content-version="1">
+<End Type="ZCOCKPIT_EDLLOJA_SRV_01.HistoricoCabec" Multiplicity="1" Role="FromRole_HistCabecDetail"/>
+<End Type="ZCOCKPIT_EDLLOJA_SRV_01.HistoricoDetail" Multiplicity="*" Role="ToRole_HistCabecDetail"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_HistCabecDetail">
+<PropertyRef Name="Id"/>
+</Principal>
+<Dependent Role="ToRole_HistCabecDetail">
+<PropertyRef Name="Id"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<EntityContainer Name="ZCOCKPIT_EDLLOJA_SRV_01_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+<EntitySet Name="SubscriptionCollection" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.Subscription" sap:content-version="1"/>
+<EntitySet Name="NotificationCollection" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.Notification" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="LojasSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.Lojas" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="AgendaDiaSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.AgendaDia" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="TitulosSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.Titulos" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="SomaItensSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.SomaItens" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="TipoPedidoSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.TipoPedido" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="GravaPedidoSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.GravaPedido" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="FornecHistoricoSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.FornecHistorico" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="HistoricoCabecSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.HistoricoCabec" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="CargaPedidoSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.CargaPedido" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="AgendFornecSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.AgendFornec" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="HistoricoDetailSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.HistoricoDetail" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="HistDetailInfoSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.HistDetailInfo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="PrnPedidoSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.PrnPedido" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="PedidoHistoricoSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.PedidoHistorico" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="FornecedoresSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.Fornecedores" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+<EntitySet Name="ItensPedidoSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.ItensPedido" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+<EntitySet Name="UsuarioLojaSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.UsuarioLoja" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="CalendarioSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.Calendario" sap:searchable="true" sap:requires-filter="true" sap:content-version="1"/>
+<EntitySet Name="PeriodicidadeSet" EntityType="ZCOCKPIT_EDLLOJA_SRV_01.Periodicidade" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<AssociationSet Name="HistCabecInfo_AssocSet" Association="ZCOCKPIT_EDLLOJA_SRV_01.HistCabecInfo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="HistoricoCabecSet" Role="FromRole_HistCabecInfo"/>
+<End EntitySet="HistDetailInfoSet" Role="ToRole_HistCabecInfo"/>
+</AssociationSet>
+<AssociationSet Name="HistCabecDetail" Association="ZCOCKPIT_EDLLOJA_SRV_01.HistCabecDetail" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="HistoricoCabecSet" Role="FromRole_HistCabecDetail"/>
+<End EntitySet="HistoricoDetailSet" Role="ToRole_HistCabecDetail"/>
+</AssociationSet>
+</EntityContainer>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://devsapecc02.grupodma.intra:8000/sap/opu/odata/sap/ZCOCKPIT_EDLLOJA_SRV/$metadata"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://devsapecc02.grupodma.intra:8000/sap/opu/odata/sap/ZCOCKPIT_EDLLOJA_SRV/$metadata"/>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>

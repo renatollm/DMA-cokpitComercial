@@ -1,0 +1,124 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:semantic="sap.m.semantic" xmlns:table="sap.ui.table"
+	xmlns:sap.ui.core="sap.ui.core" xmlns="sap.m" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="dma.zedlloja.controller.histDetail"
+	height="100%">
+	<Page title="Histórico de Pedidos - Detalhe" id="__page3" showSubHeader="false" showNavButton="true" navButtonPress="onNavBack">
+        <headerContent>
+            <Bar>
+                <contentLeft>
+                    <Button
+                        icon="sap-icon://nav-back"
+                        press="onNavBack" />
+                </contentLeft>
+                <contentMiddle>
+                    <Text 
+                        text="Detalhe do Pedido" />
+                </contentMiddle>
+                <contentRight>
+                    <Button
+                        id="botaoImprimir" 
+                        visible="true" enabled="false"
+                        icon="sap-icon://print"
+                        press="onPrint" />
+                </contentRight>		
+            </Bar>
+        </headerContent>
+        <content>
+            <ObjectHeader 
+                id="headerDetail"
+                title="{histDetailInfo>/Lifnr} - {path: 'histDetailInfo>/Mcod1'}"
+                number="{
+                    parts:[{path:'histDetailInfo>/Valor'},{path:'R$'}],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {showMeasure: false}
+                }"
+                class="sapUiResponsivePadding--header"  >
+                <statuses> 
+                    <ObjectStatus
+                        title="Data do Pedido"
+                        text="{path: 'histDetailInfo>/Dtpedido'}" />
+                    <ObjectStatus
+                        title="Data da Remessa"
+                        text="{path: 'histDetailInfo>/Dtremessa'}" />
+                </statuses>
+                <attributes>
+                    <ObjectAttribute id="headerEbeln" text="Pedido: {path: 'histDetailInfo>/Pedido' }" />
+                    <ObjectAttribute id="headerLoja" text="{path: 'histDetailInfo>/Loja' }" />
+                </attributes>
+            </ObjectHeader>
+
+            <ScrollContainer  width="100%" height="100%" horizontal="false" vertical="true" focusable="true">
+                <Table
+                    id="tableHistDetail"
+                    class="tableHistDetail"
+                    noDataText="Sem itens para exibir"
+                    items="{path:'/HistoricoDetailSet', sorter: {path:'Matnr'}}"
+                    updateFinished="updateFinished"
+                    sticky="ColumnHeaders" >
+                    <columns>
+                        <Column width="6em" hAlign="Center">
+                            <Text text="Material" />
+                        </Column>
+                        <Column width="20em" hAlign="Begin">
+                            <Text text="Descrição" />
+                        </Column>
+                        <Column width="5.5em" hAlign="End">
+                            <Text text="Preço" />
+                        </Column>
+                        <Column width="5em" hAlign="Center">
+                            <Text text="Solicitado" />
+                        </Column>
+                        <Column width="4em" hAlign="Center">
+                            <Text text="Aprovado" />
+                        </Column>
+                        <Column width="3em" hAlign="Center">
+                            <Text text="Un" />
+                        </Column>
+                        <Column width="4em" hAlign="Center">
+                            <Text text="Qtd Emb" />
+                        </Column>
+                        <Column width="6em" hAlign="Center">
+                            <Text text="Valor" />
+                        </Column>
+                        <Column width="8em" hAlign="Begin">
+                            <Text text="Status" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <!-- Material -->
+                                <Text text="{parts: ['Matnr'],formatter: '.formatter.leadingZeroOutput'}" />
+                                <!-- Descrição -->
+                                <Text text="{Maktx}" />
+                                <!-- Preço -->
+                                <ObjectNumber number="{path: 'Prcompra', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+                                <!-- Solicitado -->
+                                <Text text="{Requisicao}" />
+                                <!-- Aprovado -->
+                                <Text text="{Aprovado}" />
+                                <!-- Unidade -->
+                                <Text text="{Un}" />
+                                <!-- Qtde -->
+                                <Text text="{Umrez}" />
+                                <!-- Vlr Total -->
+                                <ObjectNumber number="{path: 'ValorItem', formatter: '.formatter.fullNumberStr'}" emphasized="false"/>
+                                <!-- Status -->
+                                <ObjectStatus
+                                    text="{ path: 'Status', formatter: '.formatter.statusTextFormat' }"
+                                    state="{ path: 'Status', formatter: '.formatter.statusStateFormat' }" 
+                                    icon="{ path: 'Status', formatter: '.formatter.statusIconFormat' }" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+		</content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button id="imprimePedido" icon="sap-icon://print" type="Emphasized" text="Imprime pedido" press="onPrint" enabled="true"/>
+            </OverflowToolbar>
+        </footer>
+	</Page>
+</mvc:View>
